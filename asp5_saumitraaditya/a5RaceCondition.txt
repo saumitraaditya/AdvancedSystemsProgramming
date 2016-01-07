@@ -1,0 +1,45 @@
+
+
+*************************Race Condition Analysis*******************************
+*
+*   Shared Variables -- ramdisk, count1, count2, mode.
+*
+*
+*
+*   
+*   CASE-1
+*   If device is in mode 1, only one device can complete open() by locking sem2.
+*   so at any time only one thread can do read/write/ioctl/close thereby the possibility
+*   of race is eliminated.
+*   
+*   critical areas--
+*   open()------downsem1---check mode---increment count1---upsem1---downsem2 // if successful holds sem2.
+*   read()/write()----downsem1---- carry out work ---- upsem1.
+*   ioctl()----downsem1----check mode---change mode accordingly---if 1->2---adjust counts---upsem2---upsem1 
+*   // no thread can increment counts do read/write as protected by sem1.
+*                                                                 if 1->1---upsem1 
+*   // no thread can increment count do read/write
+*   release()---downsem1----decrement count---do wakeup if applicable, upsem2 if applicable----upsem1
+*   // again all critical operations protected by sem1
+*
+*
+*   CASE-2
+*   if in Mode2 multiple devices can open the device as their is no need to block on sem2, however even here all critical 
+*   areas are protected by sem1. So their is no race condition, in fact reads/write/ioctl/open/release are
+*   strictly serialized by sem1.
+*   critical areas--
+*   open()------downsem1---check mode---increment count2---upsem1
+*   read()/write()----downsem1---- carry out work ---- upsem1.
+*   ioctl()----downsem1----check mode---change mode accordingly---if 2->1---adjust counts---downsem2---upsem1 
+*   // no thread can increment counts do read/write as protected by sem1.
+*                                                                 if 2->2---upsem1 
+*   // no thread can increment count do read/write
+*   release()---downsem1----decrement count---do wakeup if applicable----upsem1
+*   // again all critical operations protected by sem1
+*
+*   CONCLUSION
+*   There are no race conditions present in the code at least I was not able to find one. 
+*
+*
+****************************************************************************************
+

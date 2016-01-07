@@ -1,0 +1,9 @@
+Test case :
+
+	Block size = 10
+	
+1. using instructionFile3 on the outputfile found using instructionFile1 reproduces the
+   inputfile back.
+2. instructionFile2 reproduces the input as the output
+3. instructionFile4 generates a pattern in the outputfile
+

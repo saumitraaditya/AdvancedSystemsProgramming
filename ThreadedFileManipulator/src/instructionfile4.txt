@@ -1,0 +1,25 @@
+revert 1 1 0
+zero 8 8 0
+zero 10 10 0
+revert 16 16 0
+zero 18 18 0 1 2 3
+zero 24 24 0
+zero 27 27 0 1 2 3
+revert 32 32 0
+zero 36 36 0 1 2 3
+zero 40 40 0
+zero 45 45 0 1 2 3
+revert 48 48 0
+zero 54 54 0 1 2 3
+zero 56 56 0
+zero 63 63 0 1 2 3
+revert 64 64 0
+zero 72 72 0
+revert 80 80 0
+revert 88 88 0
+revert 96 96 0
+revert 104 104 0
+revert 112 112 0
+revert 120 120 0
+revert 128 128 0
+revert 136 136 0

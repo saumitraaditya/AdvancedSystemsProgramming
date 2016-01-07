@@ -1,0 +1,1 @@
+cmd_/home/user/Downloads/my5module/mydriver.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.2.0-23-generic-pae/scripts/module-common.lds --build-id  -o /home/user/Downloads/my5module/mydriver.ko /home/user/Downloads/my5module/mydriver.o /home/user/Downloads/my5module/mydriver.mod.o
